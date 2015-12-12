@@ -26,19 +26,17 @@ def main():
                 json.dump(result,outfile)
     else:
         outputFiles = os.listdir('../output')
-        print(outputFiles)
         for keyword in keywordList:
             filesForQuery = []
             for filename in outputFiles:
                 if filename.find( keyword ,7,len(filename)-17) > 0:
-                    print('keyword ' + keyword + ', filename ' + filename)
                     filesForQuery.append(filename)
             filesForQuery.sort(reverse=True)
             if filesForQuery:
                 foundFile = filesForQuery[0]
-                print(foundFile)
-                #result = json.loads(open('../output/' + foundFile).read())
-                #print(result["context"])
+                #print(foundFile)
+                result = json.loads(open('../output/' + foundFile).read())
+                print(result["context"])
 
 
 if __name__ == '__main__':
