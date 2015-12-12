@@ -1,25 +1,20 @@
 __author__ = 'omkardanke'
-
+import json
+import os
+import datetime
+import apiclient
+#from .ItemClass import ItemClass
+#from .KeywordClass import KeywordClass
 
 def main():
     readFromGoogle = False;         #Toggle to fetch results from google or get from already stored file
     keywordList = ['IBM']                   #Keywords to be searched
-    devKey = open('../documentation/googleCustomSearchAPIKey').read()  #AIzaSyDH0_r3a8C3JJM0j1ofaeh5_3H18trySng'
-    customSearchID = open('../documentation/googleSearchEngineID').read()     #010291719019110963087:n9bkswrylmi'
+
     if readFromGoogle:
         service = apiclient.discovery.build('customsearch','v1',developerKey=devKey)
         for keyword in keywordList:
-            #Get search results from google search
-            result = service.cse().list(
-                q= keyword,
-                cx= customSearchID
-                #num= '100'
-                ).execute()
-            with open('../output/result_'
-                              + keyword
-                              + datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-                              + '.txt','w') as outfile:
-                json.dump(result,outfile)
+            keywordObject = KeywordClass()
+
     else:
         outputFiles = os.listdir('../output')
         for keyword in keywordList:
@@ -34,6 +29,7 @@ def main():
                 results = json.loads(open('../output/' + foundFile).read())
                 for item in results["items"]:
                     print(item["link"])
+
 
 
 
