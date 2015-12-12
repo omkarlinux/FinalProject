@@ -1,9 +1,5 @@
 __author__ = 'omkardanke'
-import pprint
-import json
-import os
-import datetime
-import apiclient
+
 
 def main():
     readFromGoogle = False;         #Toggle to fetch results from google or get from already stored file
@@ -35,8 +31,10 @@ def main():
             if filesForQuery:
                 foundFile = filesForQuery[0]
                 #print(foundFile)
-                result = json.loads(open('../output/' + foundFile).read())
-                print(result["context"])
+                results = json.loads(open('../output/' + foundFile).read())
+                for item in results["items"]:
+                    print(item["link"])
+
 
 
 if __name__ == '__main__':
