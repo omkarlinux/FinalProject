@@ -1,16 +1,18 @@
 __author__ = 'omkardanke'
 
-from .KeywordClass import KeywordClass
+from source.KeywordClass import KeywordClass
 
 def main():
-    readFromGoogle = False;         #Toggle to fetch results from google or get from already stored file
     keywordList = ['IBM']                   #Keywords to be searched
 
-    if readFromGoogle:
-        for keyword in keywordList:
-            keyword = keyword.capitalize()
-            keywordObject = KeywordClass()
-            keywordObject.getResults()
+    for keyword in keywordList:
+        keyword = keyword.upper()
+        keywordObject = KeywordClass(keyword)
+        keywordObject.getResults()
+        #keywordObject.listItems()
+        keywordObject.pullSource()
+        #keywordObject.debugListItemSource()
+
 
 if __name__ == '__main__':
     main()

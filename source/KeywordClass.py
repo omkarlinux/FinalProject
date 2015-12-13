@@ -51,3 +51,14 @@ class KeywordClass:
             self.hasLocalResult = True
             return results
 
+    def listItems(self):
+        for item in self.items:
+            item.showItem()
+
+    def pullSource(self):
+        for item in self.items:
+            item.getSource()
+
+    def debugListItemSource(self):
+        for item in self.items:
+            item.debugShowSource()
