@@ -25,3 +25,6 @@ class ItemClass:
     def debugShowSource(self):
         print(self.link)
         print(self.pageSource.splitlines()[0:2])
+
+        #Change for git test
+        #Newline
