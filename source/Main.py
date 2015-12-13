@@ -6,7 +6,6 @@ from tabulate import tabulate
 import sys
 
 def main():
-    #keywordList = ['IBM','Oracle','Microsoft','SAP','Intel','Hadoop','SQL']                   #Keywords to be searched
     keywordList = sys.argv[1:]
     keywordObjectList = []
 
@@ -20,7 +19,7 @@ def main():
     printRank(keywordObjectList)
 
 def printRank(keywordObjectList):
-    print("\n\nCalculating ranks for keywords...\n\n")
+    print("\n\nCalculating ranks for keywords...")
     keywordObjectList.sort(key=lambda keywordItem : keywordItem.count, reverse=True)
     printList = []
     for rank, keywordItem in enumerate(keywordObjectList):
