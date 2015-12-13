@@ -1,18 +1,31 @@
+#!/usr/local/bin/python3
 __author__ = 'omkardanke'
 
-from source.KeywordClass import KeywordClass
+from KeywordClass import KeywordClass
+from tabulate import tabulate
+import sys
 
 def main():
-    keywordList = ['IBM','Oracle','Microsoft','SAP','Intel','Hadoop','SQL']                   #Keywords to be searched
+    #keywordList = ['IBM','Oracle','Microsoft','SAP','Intel','Hadoop','SQL']                   #Keywords to be searched
+    keywordList = sys.argv[1:]
+    keywordObjectList = []
 
     for keyword in keywordList:
         keyword = keyword.upper()
         keywordObject = KeywordClass(keyword)
         keywordObject.getResults()
-        print(keywordObject.keyword)
-        #keywordObject.listItems()
         keywordObject.pullSource()
-        #keywordObject.debugListItemSource()
+        keywordObject.getKeywordCount()
+        keywordObjectList.append(keywordObject)
+    printRank(keywordObjectList)
+
+def printRank(keywordObjectList):
+    print("\n\nCalculating ranks for keywords...\n\n")
+    keywordObjectList.sort(key=lambda keywordItem : keywordItem.count, reverse=True)
+    printList = []
+    for rank, keywordItem in enumerate(keywordObjectList):
+        printList.append([rank + 1, keywordItem.keyword, keywordItem.count])
+    print("\n\n" + tabulate(printList,headers=["Rank","Keyword", "Count"]))
 
 
 if __name__ == '__main__':

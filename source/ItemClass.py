@@ -1,6 +1,8 @@
 __author__ = 'omkardanke'
 
 import requests
+import re
+
 class ItemClass:
 
     def __init__(self, inputLink):
@@ -26,5 +28,5 @@ class ItemClass:
         print(self.link)
         print(self.pageSource.splitlines()[0:2])
 
-        #Change for git test
-        #Newline
+    def countInSource(self, keyword):
+        return len(re.findall((re.escape(keyword)), self.pageSource, re.IGNORECASE))
